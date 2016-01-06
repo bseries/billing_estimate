@@ -1,0 +1,38 @@
+{
+    "name": "atelierdisko/billing_estimate",
+    "description": "Estimate functionality for Banque.",
+    "homepage": "http://atelierdisko.de",
+    "type": "lithium-library",
+    "license": "proprietary",
+    "authors": [
+        {
+          "name": "Atelier Disko",
+          "homepage": "http://atelierdisko.de"
+        }
+    ],
+    "require": {
+        "atelierdisko/base_address": "1.4.*",
+        "atelierdisko/base_core": "1.4.*",
+        "atelierdisko/base_document": "1.4.*",
+        "atelierdisko/base_tag": "1.4.*",
+        "atelierdisko/billing_core": "1.4.*",
+        "atelierdisko/billing_payment": "1.4.*",
+        "atelierdisko/finance": "2.0.*",
+        "atelierdisko/li3_flash_message": "1.0.*@beta",
+        "composer/installers": "1.*@stable",
+        "php": ">=5.5.0",
+        "unionofrad/lithium": "1.0.*@dev"
+    },
+    "suggest": {
+      "atelierdisko/ecommerce_core": "Enables product binding for estimate positions."
+    },
+    "repositories": [
+      { "type": "vcs", "url": "git@code.atelierdisko:base_address" },
+      { "type": "vcs", "url": "git@code.atelierdisko:base_core" },
+      { "type": "vcs", "url": "git@code.atelierdisko:base_document" },
+      { "type": "vcs", "url": "git@code.atelierdisko:base_tag" },
+      { "type": "vcs", "url": "git@code.atelierdisko:billing_core" },
+      { "type": "vcs", "url": "git@code.atelierdisko:billing_payment" },
+      { "type": "vcs", "url": "git@code.atelierdisko:finance" }
+    ]
+}

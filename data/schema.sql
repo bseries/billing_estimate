@@ -1,8 +1,7 @@
-
 -- Create syntax for TABLE 'billing_estimate_positions'
 CREATE TABLE `billing_estimate_positions` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `billing_estimate_id` int(11) unsigned DEFAULT NULL COMMENT 'NULL until assigned to estimate',
+  `billing_invoice_id` int(11) unsigned DEFAULT NULL COMMENT 'NULL until assigned to invoice',
   `user_id` int(11) unsigned NOT NULL,
   `description` varchar(250) NOT NULL,
   `tags` varchar(250) DEFAULT NULL,
@@ -14,7 +13,7 @@ CREATE TABLE `billing_estimate_positions` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `billing_estimate_id` (`billing_estimate_id`)
+  KEY `billing_invoice_id` (`billing_invoice_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Create syntax for TABLE 'billing_estimates'
@@ -22,7 +21,7 @@ CREATE TABLE `billing_estimates` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `owner_id` int(11) unsigned NOT NULL,
   `user_id` int(11) unsigned NOT NULL,
-`number` varchar(100) NOT NULL DEFAULT '',
+  `number` varchar(100) NOT NULL DEFAULT '',
   `date` date NOT NULL,
   `status` varchar(50) NOT NULL DEFAULT 'created',
   `user_vat_reg_no` varchar(250) DEFAULT '',
@@ -48,13 +47,3 @@ CREATE TABLE `billing_estimates` (
   UNIQUE KEY `number` (`number`),
   KEY `user` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Augment other tables
-ALTER TABLE `users` ADD `is_auto_estimated` TINYINT(1)  UNSIGNED  NOT NULL  DEFAULT '0'  COMMENT 'billing' AFTER `is_notified`;
-ALTER TABLE `users` ADD `is_auto_paying` TINYINT(1)  UNSIGNED  NOT NULL  DEFAULT '0'  COMMENT 'billing' AFTER `is_auto_estimated`;
-ALTER TABLE `users` ADD `payment_method` VARCHAR(100)  NULL  DEFAULT NULL  AFTER `tax_no`;
-ALTER TABLE `users` ADD `auto_estimated` DATETIME  NULL  COMMENT 'billing' AFTER `is_auto_estimated`;
-ALTER TABLE `users` ADD `auto_estimate_frequency` VARCHAR(20)  NOT NULL  DEFAULT 'monthly'  COMMENT 'billing'  AFTER `auto_estimated`;
-
-
-

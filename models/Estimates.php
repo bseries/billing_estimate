@@ -302,13 +302,16 @@ Estimates::applyFilter('save', function($self, $params, $chain) {
 		if (!$group) {
 			return false;
 		}
+		$terms = Settings::read('billing.paymentTerms');
+
 		$data = array_filter($data) + [
 			'user_id' => $user->id,
 			'user_vat_reg_no' => $user->vat_reg_no,
 			'tax_type' => $group->taxType,
 			'tax_note' => $group->taxType()->note(),
 			'date' => date('Y-m-d'),
-			'status' => 'created'
+			'status' => 'created',
+			'terms' => is_callable($terms) ? $terms($user) : $terms
 		];
 		$data = $user->address('billing')->copy($data, 'address_');
 	} else {

@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Atelier Disko
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the billing_estimate package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: billing_estimate 1.0\n"
 "Report-Msgid-Bugs-To: info@atelierdisko.de\n"
-"POT-Creation-Date: 2016-08-07 15:11+0200\n"
+"POT-Creation-Date: 2016-01-06 15:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,185 +17,93 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: config/panes.php:21
+#: config/panes.php:26
 msgid "Estimates"
 msgstr ""
 
-#: config/panes.php:30
+#: config/panes.php:35
 msgid "Pending"
 msgstr ""
 
-#: config/widgets.php:46
-msgid "estimated"
+#: config/widgets.php:41 views/estimates/admin_index.html.php:78
+msgid "open"
 msgstr ""
 
-#: controllers/EstimatesController.php:61
-msgid "Successfully paid estimate in full."
+#: config/widgets.php:42
+msgid "accepted"
 msgstr ""
 
-#: controllers/EstimatesController.php:66
-msgid "Failed to pay estimate in full."
-msgstr ""
-
-#: controllers/EstimatesController.php:77
-msgid "created"
-msgstr ""
-
-#: controllers/EstimatesController.php:78
-msgid "sent"
-msgstr ""
-
-#: controllers/EstimatesController.php:79
-msgid "paid"
-msgstr ""
-
-#: controllers/EstimatesController.php:80
-msgid "cancelled"
-msgstr ""
-
-#: controllers/EstimatesController.php:82
-msgid "awaiting payment"
-msgstr ""
-
-#: controllers/EstimatesController.php:83
-msgid "payment accepted"
-msgstr ""
-
-#: controllers/EstimatesController.php:84
-msgid "payment remotely accepted"
-msgstr ""
-
-#: controllers/EstimatesController.php:85
-msgid "payment error"
-msgstr ""
-
-#: documents/Estimate.php:47
+#: documents/Estimate.php:53
 msgid "{:number} — VAT Reg. No."
 msgstr ""
 
-#: documents/Estimate.php:54
+#: documents/Estimate.php:61
 msgid "{:number} — Tax No."
 msgstr ""
 
-#: documents/Estimate.php:87
+#: documents/Estimate.php:97
 msgid "{:city}, the {:date}"
 msgstr ""
 
-#: documents/Estimate.php:119
+#: documents/Estimate.php:131
 msgid "{:number} — Client No."
 msgstr ""
 
-#: documents/Estimate.php:126
+#: documents/Estimate.php:138
 msgid "{:number} — Estimate No."
 msgstr ""
 
-#: documents/Estimate.php:135
+#: documents/Estimate.php:147
 msgid "{:number} — Client VAT Reg. No."
 msgstr ""
 
-#: documents/Estimate.php:161
+#: documents/Estimate.php:173
 msgid "Dear {:name},"
 msgstr ""
 
-#: documents/Estimate.php:186 views/estimates/admin_form.html.php:121
-#: views/estimates/admin_form.html.php:176
+#: documents/Estimate.php:198 views/estimates/admin_form.html.php:116
+#: views/estimates/admin_form.html.php:171
 msgid "Description"
 msgstr ""
 
-#: documents/Estimate.php:193 views/estimates/admin_form.html.php:98
+#: documents/Estimate.php:205 views/estimates/admin_form.html.php:93
 msgid "Quantity"
 msgstr ""
 
-#: documents/Estimate.php:200
+#: documents/Estimate.php:212
 msgid "Unit Price"
 msgstr ""
 
-#: documents/Estimate.php:207 views/estimates/admin_form.html.php:369
+#: documents/Estimate.php:219
 msgid "Total"
 msgstr ""
 
-#: documents/Estimate.php:271 views/estimates/admin_form.html.php:103
-#: views/estimates/admin_form.html.php:228
+#: documents/Estimate.php:282 views/estimates/admin_form.html.php:98
+#: views/estimates/admin_form.html.php:223
+#: views/estimates/admin_index.html.php:40
 msgid "Total (net)"
 msgstr ""
 
-#: documents/Estimate.php:287
+#: documents/Estimate.php:298
 msgid "Tax ({:tax_rate}%)"
 msgstr ""
 
-#: documents/Estimate.php:305
+#: documents/Estimate.php:314
 msgid "Grand Total"
 msgstr ""
 
-#: documents/Estimate.php:324
+#: documents/Estimate.php:333
 msgid ""
 "This estimate has been automatically generated and is valid even without a "
 "signature."
 msgstr ""
 
-#: models/Estimates.php:253
-msgid "Estimate #{:number} paid."
-msgstr ""
-
-#: models/Estimates.php:290
+#: models/Estimates.php:263
 msgid "Estimate"
 msgstr ""
 
-#: models/Estimates.php:297
+#: models/Estimates.php:270
 msgid "Estimate #{:number}"
-msgstr ""
-
-#: models/Estimates.php:423
-msgid "Your estimate #{:number}."
-msgstr ""
-
-#: views/estimate_positions/admin_index.html.php:12
-msgid "pending estimate positions"
-msgstr ""
-
-#: views/estimate_positions/admin_index.html.php:29
-msgid "position"
-msgstr ""
-
-#: views/estimate_positions/admin_index.html.php:36
-#: views/estimates/admin_form.html.php:72
-#: views/estimates/admin_index.html.php:39
-msgid "Recipient"
-msgstr ""
-
-#: views/estimate_positions/admin_index.html.php:37
-#: views/estimates/admin_form.html.php:238
-#: views/estimates/admin_index.html.php:40
-msgid "Total (gross)"
-msgstr ""
-
-#: views/estimate_positions/admin_index.html.php:38
-#: views/estimates/admin_index.html.php:42
-msgid "Modified"
-msgstr ""
-
-#: views/estimate_positions/admin_index.html.php:43
-#: views/estimates/admin_index.html.php:50
-msgid "Filter"
-msgstr ""
-
-#: views/estimate_positions/admin_index.html.php:60
-#: views/estimates/admin_form.html.php:169
-#: views/estimates/admin_form.html.php:221
-#: views/estimates/admin_form.html.php:334
-#: views/estimates/admin_form.html.php:362
-#: views/estimates/admin_form.html.php:382
-msgid "delete"
-msgstr ""
-
-#: views/estimate_positions/admin_index.html.php:66
-#: views/estimates/admin_index.html.php:81
-msgid "open"
-msgstr ""
-
-#: views/estimate_positions/admin_index.html.php:71
-#: views/estimates/admin_index.html.php:86
-msgid "No items available, yet."
 msgstr ""
 
 #: views/estimates/admin_form.html.php:15
@@ -227,133 +135,136 @@ msgid "Status"
 msgstr ""
 
 #: views/estimates/admin_form.html.php:60
-msgid ""
-"The user will be notified by e-mail when the status is changed to `paid`."
-msgstr ""
-
-#: views/estimates/admin_form.html.php:65
-#: views/estimates/admin_form.html.php:290
 #: views/estimates/admin_index.html.php:36
 msgid "Date"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:68
+#: views/estimates/admin_form.html.php:63
 msgid "Estimate date."
 msgstr ""
 
-#: views/estimates/admin_form.html.php:77
+#: views/estimates/admin_form.html.php:67
+#: views/estimates/admin_index.html.php:39
+msgid "Recipient"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:72
 msgid "Address"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:85
+#: views/estimates/admin_form.html.php:80
 msgid "User"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:92
+#: views/estimates/admin_form.html.php:87
 msgid "Positions"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:99
-#: views/estimates/admin_form.html.php:292
+#: views/estimates/admin_form.html.php:94
 msgid "Currency"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:100
+#: views/estimates/admin_form.html.php:95
 msgid "Type"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:101
+#: views/estimates/admin_form.html.php:96
 msgid "Unit price"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:102
+#: views/estimates/admin_form.html.php:97
 msgid "Tax rate (%)"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:127
-#: views/estimates/admin_form.html.php:181
+#: views/estimates/admin_form.html.php:122
+#: views/estimates/admin_form.html.php:176
 msgid "Tags"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:149
-#: views/estimates/admin_form.html.php:203
+#: views/estimates/admin_form.html.php:144
+#: views/estimates/admin_form.html.php:198
 msgid "gross"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:149
-#: views/estimates/admin_form.html.php:203
+#: views/estimates/admin_form.html.php:144
+#: views/estimates/admin_form.html.php:198
 msgid "net"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:226
+#: views/estimates/admin_form.html.php:164
+#: views/estimates/admin_form.html.php:216
+#: views/estimates/admin_form.html.php:293
+msgid "delete"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:221
 msgid "add position"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:233
+#: views/estimates/admin_form.html.php:228
 msgid "Tax ({:rate}%)"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:249
-msgid "Terms"
+#: views/estimates/admin_form.html.php:233
+msgid "Total (gross)"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:251
-#: views/estimates/admin_form.html.php:258
-#: views/estimates/admin_form.html.php:278
+#: views/estimates/admin_form.html.php:244
+msgid "Letter"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:247
+#: views/estimates/admin_form.html.php:257
+#: views/estimates/admin_form.html.php:264
+#: views/estimates/admin_form.html.php:284
 msgid "Visible to recipient."
 msgstr ""
 
-#: views/estimates/admin_form.html.php:256
+#: views/estimates/admin_form.html.php:255
+msgid "Terms"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:262
 msgid "Note"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:263
+#: views/estimates/admin_form.html.php:269
 msgid "Tax"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:273
+#: views/estimates/admin_form.html.php:279
 msgid "Tax note"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:279
+#: views/estimates/admin_form.html.php:285
 msgid "Automatically generated."
 msgstr ""
 
-#: views/estimates/admin_form.html.php:285
-msgid "Payments"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:291
-msgid "Method"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:293
-msgid "Amount"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:367
-msgid "add payment"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:372
-#: views/estimates/admin_index.html.php:41
-msgid "Balance"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:389
-#: views/estimates/admin_index.html.php:80
+#: views/estimates/admin_form.html.php:300
+#: views/estimates/admin_index.html.php:77
 msgid "PDF"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:396
-#: views/estimates/admin_index.html.php:78
-msgid "pay in full"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:398
+#: views/estimates/admin_form.html.php:306
 msgid "save"
 msgstr ""
 
 #: views/estimates/admin_index.html.php:12
 msgid "estimates"
+msgstr ""
+
+#: views/estimates/admin_index.html.php:41
+msgid "Balance"
+msgstr ""
+
+#: views/estimates/admin_index.html.php:42
+msgid "Modified"
+msgstr ""
+
+#: views/estimates/admin_index.html.php:50
+msgid "Filter"
+msgstr ""
+
+#: views/estimates/admin_index.html.php:83
+msgid "No items available, yet."
 msgstr ""

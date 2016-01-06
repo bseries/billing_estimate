@@ -20,7 +20,7 @@ msgstr ""
 
 #: config/panes.php:26
 msgid "Estimates"
-msgstr "Rechnungen"
+msgstr "Kostenvoranschläge"
 
 #: config/panes.php:35
 msgid "Pending"
@@ -52,7 +52,7 @@ msgstr "{:number} — Kundennr."
 
 #: documents/Estimate.php:138
 msgid "{:number} — Estimate No."
-msgstr "{:number} — Rechnungsnr."
+msgstr "{:number} — Kostenvoranschlagsnr."
 
 #: documents/Estimate.php:147
 msgid "{:number} — Client VAT Reg. No."
@@ -98,21 +98,21 @@ msgid ""
 "This estimate has been automatically generated and is valid even without a "
 "signature."
 msgstr ""
-"Diese Rechnung wurde automatisch erzeugt und ist auch ohne Unterschrift "
+"Dieser Kostenvoranschlag wurde automatisch erzeugt und ist auch ohne Unterschrift "
 "gültig."
 
 #: models/Estimates.php:263
 msgid "Estimate"
-msgstr "Rechnung"
+msgstr "Kostenvoranschlag"
 
 #: models/Estimates.php:270
 msgid "Estimate #{:number}"
-msgstr "Rechnung #{:number}"
+msgstr "Kostenvoranschlag #{:number}"
 
 #: views/estimates/admin_form.html.php:15
 #: views/estimates/admin_index.html.php:29
 msgid "estimate"
-msgstr "Rechnung"
+msgstr "Kostenvoranschlag"
 
 #: views/estimates/admin_form.html.php:30
 msgid "Access"
@@ -144,7 +144,7 @@ msgstr "Datum"
 
 #: views/estimates/admin_form.html.php:63
 msgid "Estimate date."
-msgstr "Rechnungsdatum."
+msgstr "Kostenvoranschlagsdatum."
 
 #: views/estimates/admin_form.html.php:67
 #: views/estimates/admin_index.html.php:39
@@ -254,7 +254,7 @@ msgstr "speichern"
 
 #: views/estimates/admin_index.html.php:12
 msgid "estimates"
-msgstr "Rechnungen"
+msgstr "Kostenvoranschläge"
 
 #: views/estimates/admin_index.html.php:41
 msgid "Balance"
@@ -273,13 +273,13 @@ msgid "No items available, yet."
 msgstr "Es sind noch keine Elemente verfügbar."
 
 #~ msgid "estimated"
-#~ msgstr "in Rechnung gestellt"
+#~ msgstr "in Kostenvoranschlag gestellt"
 
 #~ msgid "Successfully paid estimate in full."
-#~ msgstr "Rechnung erfolgreich vollständig bezahlt."
+#~ msgstr "Kostenvoranschlag erfolgreich vollständig bezahlt."
 
 #~ msgid "Failed to pay estimate in full."
-#~ msgstr "Vollständige Zahlung der Rechnung fehlgeschlagen."
+#~ msgstr "Vollständige Zahlung der Kostenvoranschlag fehlgeschlagen."
 
 #~ msgid "created"
 #~ msgstr "erstellt"
@@ -303,13 +303,13 @@ msgstr "Es sind noch keine Elemente verfügbar."
 #~ msgstr "Zahlungsfehler"
 
 #~ msgid "Estimate #{:number} paid."
-#~ msgstr "Rechnung #{:number} bezahlt."
+#~ msgstr "Kostenvoranschlag #{:number} bezahlt."
 
 #~ msgid "Your estimate #{:number}."
-#~ msgstr "Ihre Rechnung #{:number}."
+#~ msgstr "Ihre Kostenvoranschlag #{:number}."
 
 #~ msgid "pending estimate positions"
-#~ msgstr "Unerledigte Rechnungspositionen"
+#~ msgstr "Unerledigte Kostenvoranschlagspositionen"
 
 #~ msgid "position"
 #~ msgstr "Position"
@@ -345,7 +345,7 @@ msgstr "Es sind noch keine Elemente verfügbar."
 #~ "When the estimate is locked it cannot be changed anymore with the "
 #~ "exception of the outstanding amount."
 #~ msgstr ""
-#~ "Ist eine Rechnung gesperrt, kann sie nicht mehr verändert werden - mit "
+#~ "Ist eine Kostenvoranschlag gesperrt, kann sie nicht mehr verändert werden - mit "
 #~ "Ausnahme des ausstehenden Betrags."
 
 #~ msgid "real user"

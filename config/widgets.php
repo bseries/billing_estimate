@@ -37,8 +37,9 @@ Widgets::register('estimates', function() use ($t) {
 	]);
 
 	return [
+		'title' => $t('Estimates', ['scope' => 'billing_estimate']),
 		'data' => [
-			$t('open', ['scope' => 'billing_estimate']) => $open,
+			$t('pending', ['scope' => 'billing_estimate']) => $open,
 			$t('accepted', ['scope' => 'billing_estimate']) => $accepted,
 		]
 	];

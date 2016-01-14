@@ -31,14 +31,5 @@ Panes::register('billing.estimates', [
 	],
 	'weight' => 50
 ]);
-Panes::register('billing.estimatePositions', [
-	'title' => $t('Pending', ['scope' => 'billing_estimate']),
-	'url' => [
-		'library' => 'billing_estimate',
-		'controller' => 'EstimatePositions', 'action' => 'index',
-		'admin' => true
-	],
-	'weight' => 51
-]);
 
 ?>

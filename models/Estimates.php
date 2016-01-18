@@ -30,7 +30,6 @@ use base_tag\models\Tags;
 use billing_core\models\ClientGroups;
 use billing_core\models\TaxTypes;
 use billing_estimate\models\EstimatePositions;
-use billing_payment\models\Payments;
 use li3_mailer\action\Mailer;
 use lithium\core\Libraries;
 use lithium\g11n\Message;
@@ -166,75 +165,13 @@ class Estimates extends \base_core\models\Base {
 	}
 
 	// May return positive or negative values.
-	// We need to convert to gross here as payments will be gross only.
 	public function balance($entity) {
 		$result = new Monies();
 
 		foreach ($entity->positions() as $position) {
 			$result = $result->subtract($position->total()->getGross());
 		}
-		foreach ($entity->payments() as $payment) {
-			$result = $result->add($payment->amount());
-		}
 		return $result;
-	}
-
-	// Returns Monies.
-	public function paid($entity) {
-		$result = new Monies();
-
-		foreach ($entity->payments() as $payment) {
-			$result = $result->add($payment->amount());
-		}
-		return $result;
-	}
-
-	public function pay($entity, $payment) {
-		if ($entity->isPaidInFull()) {
-			throw new Exception("Estimate is already paid in full.");
-		}
-		$user = $entity->user();
-
-		$payment->set([
-			'billing_estimate_id' => $entity->id,
-			'user_id' => $user->id
-		]);
-		return $payment->save(null, [
-			'localize' => false
-		]);
-	}
-
-	// Generate a payment for each currency in the open positions.
-	public function payInFull($entity) {
-		if ($entity->isPaidInFull()) {
-			throw new Exception("Estimate is already paid in full.");
-		}
-
-		foreach ($entity->balance()->sum() as $currency => $money) {
-			$payment = Payments::create([
-				'method' => 'user',
-				'amount_currency' => $currency,
-				'amount' => $money->negate()->getAmount(),
-				'date' => date('Y-m-d')
-			]);
-			if (!$entity->pay($payment)) {
-				return false;
-			}
-		}
-		return $entity->save([
-			'status' => 'paid'
-		], [
-			'whitelist' => ['status']
-		]);
-	}
-
-	public function isPaidInFull($entity) {
-		foreach ($entity->balance()->sum() as $money) {
-			if ($money->getAmount() < 0) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 	public function address($entity) {

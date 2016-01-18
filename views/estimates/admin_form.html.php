@@ -127,7 +127,7 @@ $this->set([
 								<?= $this->form->field("positions.{$key}.is_optional", [
 									'type' => 'checkbox',
 									'label' => ' ',
-									'checked' => (boolean) $item->is_optional,
+									'checked' => (boolean) $child->is_optional,
 									'value' => 1
 								]) ?>
 							<td class="numeric--f quantity--f">
@@ -188,7 +188,7 @@ $this->set([
 							<?= $this->form->field("positions.new.is_optional", [
 								'type' => 'checkbox',
 								'label' => ' ',
-								'checked' => (boolean) $item->is_optional,
+								'checked' => false,
 								'value' => 1
 							]) ?>
 						<td class="numeric--f quantity--f">

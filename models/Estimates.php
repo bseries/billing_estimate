@@ -122,38 +122,41 @@ class Estimates extends \base_core\models\Base {
 		return array_filter($groups);
 	}
 
-	public function title($entity) {
-		return '#' . $entity->number;
+	public function hasOptionalPositions($entity) {
+		return (boolean) EstimatePositions::find('count', [
+			'conditions' => [
+				'billing_estimate_id' => $entity->id,
+				'is_optional' => true
+			]
+		]);
 	}
 
-	public function quantity($entity) {
-		$result = preg_match('/^([0-9])\sx\s/', $entity->title, $matches);
-
-		if (!$result) {
-			return 1;
-		}
-		return (integer) $matches[1];
+	public function title($entity) {
+		return '#' . $entity->number;
 	}
 
 	public function date($entity) {
 		return DateTime::createFromFormat('Y-m-d', $entity->date);
 	}
 
-	// Returns Prices.
-	public function totals($entity) {
+	// Returns Prices. Excluding optional costs.
+	public function totals($entity, $includeOptionalPositions = false) {
 		$result = new Prices();
 
 		foreach ($entity->positions() as $position) {
+			if (!$includeOptionalPositions && $position->is_optional) {
+				continue;
+			}
 			$result = $result->add($position->total());
 		}
 		return $result;
 	}
 
 	// Monies keyed by rate.
-	public function taxes($entity) {
+	public function taxes($entity, $includeOptionalPositions = false) {
 		$results = [];
 
-		foreach ($entity->totals()->sum() as $rate => $currencies) {
+		foreach ($entity->totals($includeOptionalPositions)->sum() as $rate => $currencies) {
 			foreach ($currencies as $currency => $price) {
 				if (!isset($results[$rate])) {
 					$results[$rate] = new Monies();
@@ -165,10 +168,13 @@ class Estimates extends \base_core\models\Base {
 	}
 
 	// May return positive or negative values.
-	public function balance($entity) {
+	public function balance($entity, $includeOptionalPositions = false) {
 		$result = new Monies();
 
 		foreach ($entity->positions() as $position) {
+			if (!$includeOptionalPositions && $position->is_optional) {
+				continue;
+			}
 			$result = $result->subtract($position->total()->getGross());
 		}
 		return $result;

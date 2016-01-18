@@ -90,6 +90,7 @@ $this->set([
 					<thead>
 						<tr>
 							<td class="position-description--f">
+							<td><?= $t('Optional?') ?>
 							<td class="numeric--f quantity--f"><?= $t('Quantity') ?>
 							<td class="currency--f"><?= $t('Currency') ?>
 							<td class="price-type--f"><?= $t('Type') ?>
@@ -121,6 +122,13 @@ $this->set([
 									'value' => $child->tags(),
 									'placeholder' => $t('Tags'),
 									'class' => 'input--tags'
+								]) ?>
+							<td>
+								<?= $this->form->field("positions.{$key}.is_optional", [
+									'type' => 'checkbox',
+									'label' => ' ',
+									'checked' => (boolean) $item->is_optional,
+									'value' => 1
 								]) ?>
 							<td class="numeric--f quantity--f">
 								<?= $this->form->field("positions.{$key}.quantity", [
@@ -176,6 +184,13 @@ $this->set([
 								'placeholder' => $t('Tags'),
 								'class' => 'input--tags'
 							]) ?>
+						<td>
+							<?= $this->form->field("positions.new.is_optional", [
+								'type' => 'checkbox',
+								'label' => ' ',
+								'checked' => (boolean) $item->is_optional,
+								'value' => 1
+							]) ?>
 						<td class="numeric--f quantity--f">
 							<?= $this->form->field('positions.new.quantity', [
 								'type' => 'text',
@@ -217,21 +232,28 @@ $this->set([
 					</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="9" class="nested-add-action">
+							<td colspan="10" class="nested-add-action">
 								<?= $this->form->button($t('add position'), ['type' => 'button', 'class' => 'button add-nested']) ?>
+
 						<tr class="totals">
-							<td colspan="6"><?= $t('Total (net)') ?>
+							<td colspan="7">
+								<?= $t('Total (net)') ?>
 							<td><?= $this->money->format($item->totals()->getNet()) ?>
 
 						<?php foreach ($item->taxes() as $rate => $tax): ?>
-						<tr class="totals">
-							<td colspan="6"><?= $t('Tax ({:rate}%)', ['rate' => $rate]) ?>
-							<td><?= $this->money->format($tax) ?>
+							<tr class="totals">
+								<td colspan="7"><?= $t('Tax ({:rate}%)', ['rate' => $rate]) ?>
+								<td><?= $this->money->format($tax) ?>
 						<?php endforeach ?>
 
 						<tr class="totals">
-							<td colspan="6"><?= $t('Total (gross)') ?>
+							<td colspan="7"><?= $t('Total (gross)') ?>
 							<td><?= $this->money->format($item->totals()->getGross()) ?>
+						<?php if ($item->hasOptionalPositions()): ?>
+						<tr class="totals">
+							<td colspan="10">
+									<?= $t('excl. optional')?>
+						<?php endif ?>
 					</tfoot>
 				</table>
 			</section>

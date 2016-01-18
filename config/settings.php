@@ -29,7 +29,26 @@ Settings::register('estimate.number', [
 	'generate' => '%Y%%04.d'
 ]);
 
-// Use letter feature.
+// The default letter to use. Can either be `false` to disable feature, `true` to enable
+// it. Provide a text string with the text or a callable which must return the text to
+// enable and provide a default text.
+//
+// ```
+// Settings::register('...', true);
+// Settings::register('...', 'foo');
+// Settings::register('...', function($user) { return 'foo'; }));
+// ```
 Settings::register('estimate.letter', false);
+
+// The default terms to use. Can either be `false` to disable feature, `true` to enable
+// it. Provide a text string with the text or a callable which must return the text to
+// enable and provide a default text.
+//
+// ```
+// Settings::register('...', true);
+// Settings::register('...', 'foo');
+// Settings::register('...', function($user) { return 'foo'; }));
+// ```
+Settings::register('estimate.terms', false);
 
 ?>

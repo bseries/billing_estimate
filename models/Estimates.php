@@ -244,7 +244,8 @@ Estimates::applyFilter('save', function($self, $params, $chain) {
 		if (!$group) {
 			return false;
 		}
-		$terms = Settings::read('billing.paymentTerms');
+		$terms = Settings::read('estimate.terms');
+		$letter = Settings::read('estimate.letter');
 
 		$data = array_filter($data) + [
 			'user_id' => $user->id,
@@ -253,7 +254,8 @@ Estimates::applyFilter('save', function($self, $params, $chain) {
 			'tax_note' => $group->taxType()->note(),
 			'date' => date('Y-m-d'),
 			'status' => 'created',
-			'terms' => is_callable($terms) ? $terms($user) : $terms
+			'letter' => !is_bool($letter) ? (is_callable($letter) ? $letter($user) : $letter) : null,
+			'terms' => !is_bool($terms) ? (is_callable($terms) ? $terms($user) : $terms) : null
 		];
 		$data = $user->address('billing')->copy($data, 'address_');
 	} else {

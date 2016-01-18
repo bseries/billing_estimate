@@ -259,7 +259,7 @@ $this->set([
 			</section>
 		</div>
 
-		<?php if (Settings::read('estimate.letter')): ?>
+		<?php if (Settings::read('estimate.letter') !== false): ?>
 			<div class="grid-row">
 				<?= $this->form->field('letter', [
 					'type' => 'textarea',
@@ -272,11 +272,18 @@ $this->set([
 
 		<div class="grid-row">
 			<section class="grid-column-left">
-				<?= $this->form->field('terms', [
-					'type' => 'textarea',
-					'label' => $t('Terms')
-				]) ?>
-				<div class="help"><?= $t('Visible to recipient.') ?></div>
+				<?php if (Settings::read('estimate.terms') !== false): ?>
+					<?= $this->form->field('terms', [
+						'type' => 'textarea',
+						'label' => $t('Terms')
+					]) ?>
+					<div class="help">
+						<?php if (Settings::read('estimate.terms') !== true): ?>
+							<?= $t('Leave empty to use default terms.') ?>
+						<?php endif ?>
+						<?= $t('Visible to recipient.') ?>
+					</div>
+				<?php endif ?>
 			</section>
 			<section class="grid-column-right">
 				<?= $this->form->field('note', [

@@ -1,7 +1,7 @@
 -- Create syntax for TABLE 'billing_estimate_positions'
 CREATE TABLE `billing_estimate_positions` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `billing_invoice_id` int(11) unsigned DEFAULT NULL COMMENT 'NULL until assigned to invoice',
+  `billing_estimate_id` int(11) unsigned DEFAULT NULL COMMENT 'NULL until assigned to invoice',
   `user_id` int(11) unsigned NOT NULL,
   `description` varchar(250) NOT NULL,
   `tags` varchar(250) DEFAULT NULL,
@@ -10,10 +10,11 @@ CREATE TABLE `billing_estimate_positions` (
   `amount_currency` char(3) NOT NULL DEFAULT 'EUR',
   `amount_type` char(5) NOT NULL DEFAULT 'net',
   `amount_rate` int(5) unsigned NOT NULL DEFAULT '0',
+  `is_optional` tinyint(1) unsigned DEFAULT '0',
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `billing_invoice_id` (`billing_invoice_id`)
+  KEY `billing_invoice_id` (`billing_estimate_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Create syntax for TABLE 'billing_estimates'

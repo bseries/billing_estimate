@@ -266,7 +266,11 @@ $this->set([
 					'label' => $t('Letter'),
 					'class' => 'textarea-size--gamma'
 				]) ?>
-				<div class="help"><?= $t('Visible to recipient.') ?></div>
+				<?php if (Settings::read('estimate.letter') !== true): ?>
+					<div class="help">
+						<?= $t('Leave empty to use default letter.') ?>
+					</div>
+				<?php endif ?>
 			</div>
 		<?php endif ?>
 

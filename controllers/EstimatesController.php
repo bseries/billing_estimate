@@ -56,7 +56,7 @@ class EstimatesController extends \base_core\controllers\BaseController {
 	protected function _selects($item = null) {
 		$statuses = Estimates::enum('status');
 		$currencies = Currencies::find('list');
-		$users = [null => '-'] + Users::find('list', ['order' => 'name']);
+		$users = [null => '-'] + Users::find('list', ['order' => 'number']);
 
 		if ($item) {
 			$taxTypes = TaxTypes::find('list');

@@ -52,7 +52,7 @@ msgstr "{:number} — Kundennr."
 
 #: documents/Estimate.php:138
 msgid "{:number} — Estimate No."
-msgstr "{:number} — Kostenvoranschlagsnr."
+msgstr "{:number} — Angebotsnr."
 
 #: documents/Estimate.php:147
 msgid "{:number} — Client VAT Reg. No."
@@ -98,21 +98,21 @@ msgid ""
 "This estimate has been automatically generated and is valid even without a "
 "signature."
 msgstr ""
-"Dieser Kostenvoranschlag wurde automatisch erzeugt und ist auch ohne Unterschrift "
+"Dieser Angebot wurde automatisch erzeugt und ist auch ohne Unterschrift "
 "gültig."
 
 #: models/Estimates.php:263
 msgid "Estimate"
-msgstr "Kostenvoranschlag"
+msgstr "Angebot"
 
 #: models/Estimates.php:270
 msgid "Estimate #{:number}"
-msgstr "Kostenvoranschlag #{:number}"
+msgstr "Angebot #{:number}"
 
 #: views/estimates/admin_form.html.php:15
 #: views/estimates/admin_index.html.php:29
 msgid "estimate"
-msgstr "Kostenvoranschlag"
+msgstr "Angebot"
 
 #: views/estimates/admin_form.html.php:30
 msgid "Access"
@@ -144,7 +144,7 @@ msgstr "Datum"
 
 #: views/estimates/admin_form.html.php:63
 msgid "Estimate date."
-msgstr "Kostenvoranschlagsdatum."
+msgstr "Angebotsdatum."
 
 #: views/estimates/admin_form.html.php:67
 #: views/estimates/admin_index.html.php:39
@@ -272,93 +272,4 @@ msgstr "Filter"
 msgid "No items available, yet."
 msgstr "Es sind noch keine Elemente verfügbar."
 
-#~ msgid "estimated"
-#~ msgstr "in Kostenvoranschlag gestellt"
 
-#~ msgid "Successfully paid estimate in full."
-#~ msgstr "Kostenvoranschlag erfolgreich vollständig bezahlt."
-
-#~ msgid "Failed to pay estimate in full."
-#~ msgstr "Vollständige Zahlung der Kostenvoranschlag fehlgeschlagen."
-
-#~ msgid "created"
-#~ msgstr "erstellt"
-
-#~ msgid "sent"
-#~ msgstr "verschickt"
-
-#~ msgid "paid"
-#~ msgstr "bezahlt"
-
-#~ msgid "cancelled"
-#~ msgstr "abgebrochen"
-
-#~ msgid "awaiting payment"
-#~ msgstr "warte auf Zahlung"
-
-#~ msgid "payment remotely accepted"
-#~ msgstr "entfernte Zahlung akzeptiert"
-
-#~ msgid "payment error"
-#~ msgstr "Zahlungsfehler"
-
-#~ msgid "Estimate #{:number} paid."
-#~ msgstr "Kostenvoranschlag #{:number} bezahlt."
-
-#~ msgid "Your estimate #{:number}."
-#~ msgstr "Ihre Kostenvoranschlag #{:number}."
-
-#~ msgid "pending estimate positions"
-#~ msgstr "Unerledigte Kostenvoranschlagspositionen"
-
-#~ msgid "position"
-#~ msgstr "Position"
-
-#~ msgid ""
-#~ "The user will be notified by e-mail when the status is changed to `paid`."
-#~ msgstr ""
-#~ "Der Benutzer wird per E-Mail benachrichtigt, sobald der Status zu "
-#~ "`bezahlt` geändert wird."
-
-#~ msgid "Payments"
-#~ msgstr "Zahlungen"
-
-#~ msgid "Method"
-#~ msgstr "Methode"
-
-#~ msgid "Amount"
-#~ msgstr "Betrag"
-
-#~ msgid "add payment"
-#~ msgstr "Zahlung hinzufügen"
-
-#~ msgid "pay in full"
-#~ msgstr "vollständig bezahlen"
-
-#~ msgid "locked"
-#~ msgstr "gesperrt"
-
-#~ msgid "unlocked"
-#~ msgstr "entsperrt"
-
-#~ msgid ""
-#~ "When the estimate is locked it cannot be changed anymore with the "
-#~ "exception of the outstanding amount."
-#~ msgstr ""
-#~ "Ist eine Kostenvoranschlag gesperrt, kann sie nicht mehr verändert werden - mit "
-#~ "Ausnahme des ausstehenden Betrags."
-
-#~ msgid "real user"
-#~ msgstr "echter Benutzer"
-
-#~ msgid "Line total (net)"
-#~ msgstr "Zeilensumme (netto)"
-
-#~ msgid "lock"
-#~ msgstr "sperren"
-
-#~ msgid "unlock"
-#~ msgstr "entsperren"
-
-#~ msgid "locked?"
-#~ msgstr "gesperrt?"

@@ -236,24 +236,26 @@ $this->set([
 							<td colspan="10" class="nested-add-action">
 								<?= $this->form->button($t('add position'), ['type' => 'button', 'class' => 'button add-nested']) ?>
 
-						<tr class="totals">
-							<td colspan="7">
-								<?= $t('Total (net)') ?>
-							<td><?= $this->money->format($item->totals()->getNet()) ?>
-
-						<?php foreach ($item->taxes() as $rate => $tax): ?>
+						<?php if ($item->positions()->count()): ?>
 							<tr class="totals">
-								<td colspan="7"><?= $t('Tax ({:rate}%)', ['rate' => $rate]) ?>
-								<td><?= $this->money->format($tax) ?>
-						<?php endforeach ?>
+								<td colspan="7">
+									<?= $t('Total (net)') ?>
+								<td><?= $this->money->format($item->totals()->getNet()) ?>
 
-						<tr class="totals">
-							<td colspan="7"><?= $t('Total (gross)') ?>
-							<td><?= $this->money->format($item->totals()->getGross()) ?>
-						<?php if ($item->hasOptionalPositions()): ?>
-						<tr class="totals">
-							<td colspan="10">
-									<?= $t('excl. optional')?>
+							<?php foreach ($item->taxes() as $rate => $tax): ?>
+								<tr class="totals">
+									<td colspan="7"><?= $t('Tax ({:rate}%)', ['rate' => $rate]) ?>
+									<td><?= $this->money->format($tax) ?>
+							<?php endforeach ?>
+
+							<tr class="totals">
+								<td colspan="7"><?= $t('Total (gross)') ?>
+								<td><?= $this->money->format($item->totals()->getGross()) ?>
+							<?php if ($item->hasOptionalPositions()): ?>
+							<tr class="totals">
+								<td colspan="10">
+										<?= $t('excl. optional')?>
+							<?php endif ?>
 						<?php endif ?>
 					</tfoot>
 				</table>

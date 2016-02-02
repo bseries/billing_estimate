@@ -321,10 +321,14 @@ $this->set([
 			</div>
 			<div class="bottom-actions__right">
 				<?php if ($item->exists()): ?>
+					<?= $this->html->link($t('duplicate'), [
+						'controller' => 'Invoices',
+						'id' => $item->id, 'action' => 'duplicate',
+					], ['class' => 'button large']) ?>
+
 					<?= $this->html->link($t('PDF'), [
 						'controller' => 'Estimates',
 						'id' => $item->id, 'action' => 'export_pdf',
-						'library' => 'billing_estimate'
 					], ['class' => 'button large']) ?>
 				<?php endif ?>
 				<?= $this->form->button($t('save'), [

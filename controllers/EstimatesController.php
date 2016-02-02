@@ -53,6 +53,29 @@ class EstimatesController extends \base_core\controllers\BaseController {
 		fclose($stream);
 	}
 
+	public function admin_duplicate() {
+		extract(Message::aliases());
+
+		$model = $this->_model;
+		$model::pdo()->beginTransaction();
+
+		$item = $model::first($this->request->id);
+		$result = $item->duplicate();
+
+		if ($result) {
+			$model::pdo()->commit();
+			FlashMessage::write($t('Successfully duplicated.', ['scope' => 'billing_estimate']), [
+				'level' => 'success'
+			]);
+		} else {
+			$model::pdo()->rollback();
+			FlashMessage::write($t('Failed to duplicate.', ['scope' => 'billing_estimate']), [
+				'level' => 'error'
+			]);
+		}
+		return $this->redirect(['action' => 'index']);
+	}
+
 	protected function _selects($item = null) {
 		$statuses = Estimates::enum('status');
 		$currencies = Currencies::find('list');

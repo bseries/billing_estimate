@@ -19,7 +19,7 @@ namespace billing_estimate\controllers;
 
 use base_core\models\Users;
 use billing_core\models\Currencies;
-use billing_core\models\TaxTypes;
+use billing_core\billing\TaxTypes;
 use billing_estimate\models\Estimates;
 use li3_flash_message\extensions\storage\FlashMessage;
 use lithium\g11n\Message;
@@ -82,7 +82,7 @@ class EstimatesController extends \base_core\controllers\BaseController {
 		$users = [null => '-'] + Users::find('list', ['order' => 'number']);
 
 		if ($item) {
-			$taxTypes = TaxTypes::find('list');
+			$taxTypes = TaxTypes::enum();
 		}
 		return compact('currencies', 'statuses', 'users', 'taxTypes');
 	}

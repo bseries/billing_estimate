@@ -20,7 +20,7 @@ namespace billing_estimate\models;
 use Exception;
 use AD\Finance\Price;
 use billing_estimate\models\Estimates;
-use billing_core\models\TaxTypes;
+use billing_core\billing\TaxTypes;
 use ecommerce_core\models\Products;
 
 class EstimatePositions extends \base_core\models\Base {
@@ -70,7 +70,7 @@ class EstimatePositions extends \base_core\models\Base {
 	}
 
 	public function taxType($entity) {
-		return TaxTypes::find('first', ['conditions' => ['name' => $entity->tax_type]]);
+		return TaxTypes::registry($entity->tax_type);
 	}
 
 	// Assumes format "Foobar (#12345)".

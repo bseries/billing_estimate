@@ -74,9 +74,10 @@ class Estimates extends \base_core\models\Base {
 	public static $enum = [
 		'status' => [
 			'created',
-			'cancelled',
+			'sent',
 			'accepted',
-			'declined',
+			'cancelled',
+			'rejected',
 		]
 	];
 

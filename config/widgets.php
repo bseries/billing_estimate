@@ -27,7 +27,13 @@ extract(Message::aliases());
 Widgets::register('estimates', function() use ($t) {
 	$open = Estimates::find('count', [
 		'conditions' => [
-			'status'  => 'created'
+			'status'  => ['created', 'sent']
+		]
+	]);
+
+	$total = Estimates::find('count', [
+		'conditions' => [
+			'status' => ['!=' => 'cancelled']
 		]
 	]);
 	$accepted = Estimates::find('count', [
@@ -40,7 +46,7 @@ Widgets::register('estimates', function() use ($t) {
 		'title' => $t('Estimates', ['scope' => 'billing_estimate']),
 		'data' => [
 			$t('pending', ['scope' => 'billing_estimate']) => $open,
-			$t('accepted', ['scope' => 'billing_estimate']) => $accepted,
+			$t('accept rate', ['scope' => 'billing_estimate']) => round(($accepted * 100) / $total, 0) . '%',
 		]
 	];
 }, [

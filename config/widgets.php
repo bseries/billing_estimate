@@ -21,19 +21,40 @@ use base_core\extensions\cms\Widgets;
 use billing_estimate\models\Estimates;
 use lithium\core\Environment;
 use lithium\g11n\Message;
+use AD\Finance\Money\Monies;
+use AD\Finance\Money\MoniesIntlFormatter as MoniesFormatter;
 
 extract(Message::aliases());
 
 Widgets::register('estimates', function() use ($t) {
-	$open = Estimates::find('count', [
+	$formatter = new MoniesFormatter(Environment::get('locale'));
+
+	$estimated = new Monies();
+	$estimates = Estimates::find('all', [
 		'conditions' => [
-			'status'  => ['created', 'sent']
+			'status' => 'accepted'
+		],
+		'fields' => [
+			'id'
+		]
+	]);
+	foreach ($estimates as $estimate) {
+		foreach ($estimate->totals()->sum() as $rate => $currencies) {
+			foreach ($currencies as $currency => $price) {
+				$estimated = $estimated->add($price->getNet());
+			}
+		}
+	}
+
+	$pending = Estimates::find('count', [
+		'conditions' => [
+			'status'  => 'sent'
 		]
 	]);
 
-	$total = Estimates::find('count', [
+	$rejected = Estimates::find('count', [
 		'conditions' => [
-			'status' => ['!=' => 'cancelled']
+			'status'  => ['rejected', 'no-response']
 		]
 	]);
 	$accepted = Estimates::find('count', [
@@ -41,12 +62,14 @@ Widgets::register('estimates', function() use ($t) {
 			'status'  => 'accepted'
 		]
 	]);
+	$rate = round(($accepted * 100) / ($accepted + $rejected), 0);
 
 	return [
 		'title' => $t('Estimates', ['scope' => 'billing_estimate']),
 		'data' => [
-			$t('pending', ['scope' => 'billing_estimate']) => $open,
-			$t('accept rate', ['scope' => 'billing_estimate']) => round(($accepted * 100) / $total, 0) . '%',
+			$t('successfully estimated', ['scope' => 'billing_estimate']) => $formatter->format($estimated),
+			$t('pending', ['scope' => 'billing_estimate']) => $pending,
+			$t('accept rate', ['scope' => 'billing_estimate']) =>  $rate . '%',
 		]
 	];
 }, [

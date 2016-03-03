@@ -245,7 +245,7 @@ class Estimates extends \base_core\models\Base {
 		foreach ($entity->positions() as $position) {
 			$newPosition = EstimatePositions::create([
 				'id' => null,
-				'billing_invoice_id' => $new->id,
+				'billing_estimate_id' => $new->id,
 				'created' => null,
 				'modified' => null
 			] + $position->data());

@@ -321,6 +321,11 @@ $this->set([
 			</div>
 			<div class="bottom-actions__right">
 				<?php if ($item->exists()): ?>
+					<?= $this->html->link($t('convert to invoice'), [
+						'controller' => 'Estimates',
+						'id' => $item->id, 'action' => 'convert_to_invoice',
+					], ['class' => 'button large']) ?>
+
 					<?= $this->html->link($t('duplicate'), [
 						'controller' => 'Estimates',
 						'id' => $item->id, 'action' => 'duplicate',

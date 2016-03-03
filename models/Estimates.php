@@ -30,6 +30,8 @@ use base_tag\models\Tags;
 use billing_core\billing\ClientGroups;
 use billing_core\billing\TaxTypes;
 use billing_estimate\models\EstimatePositions;
+use billing_invoice\models\InvoicePositions;
+use billing_invoice\models\Invoices;
 use li3_mailer\action\Mailer;
 use lithium\core\Libraries;
 use lithium\g11n\Message;
@@ -255,6 +257,40 @@ class Estimates extends \base_core\models\Base {
 			}
 		}
 		return true;
+	}
+
+	public function convertToInvoice($entity) {
+		$invoice = Invoices::create([
+			'id' => null,
+			'number' => null,  // trigger new number generation
+			'created' => null,
+			'modified' => null,
+			'status' => 'created',
+			'letter' => null,
+			'terms' => null,
+			'note' => null,
+			'date' => date('Y-m-d')
+		] + $entity->data());
+
+		if (!$invoice->save()) {
+			return false;
+		}
+		foreach ($entity->positions() as $position) {
+			if ($position->is_optional) {
+				continue;
+			}
+			$newPosition = InvoicePositions::create([
+				'id' => null,
+				'billing_invoice_id' => $invoice->id,
+				'created' => null,
+				'modified' => null
+			] + $position->data());
+
+			if (!$newPosition->save(null, ['localize' => false])) {
+				return false;
+			}
+		}
+		return $invoice;
 	}
 
 	public function taxType($entity) {

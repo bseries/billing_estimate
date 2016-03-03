@@ -17,6 +17,7 @@
         "atelierdisko/base_tag": "1.4.*",
         "atelierdisko/billing_core": "1.4.*",
         "atelierdisko/billing_payment": "1.4.*",
+        "atelierdisko/billing_invoice": "1.4.*",
         "atelierdisko/finance": "2.0.*",
         "atelierdisko/li3_flash_message": "1.0.*@beta",
         "composer/installers": "1.*@stable",

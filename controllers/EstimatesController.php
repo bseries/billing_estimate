@@ -76,6 +76,33 @@ class EstimatesController extends \base_core\controllers\BaseController {
 		return $this->redirect(['action' => 'index']);
 	}
 
+	public function admin_convert_to_invoice() {
+		extract(Message::aliases());
+
+		Estimates::pdo()->beginTransaction();
+
+		$item = Estimates::find('first', [
+			'conditions' => [
+				'id' => $this->request->id
+			]
+		]);
+		if ($invoice = $item->convertToInvoice()) {
+			Estimates::pdo()->commit();
+			FlashMessage::write($t('Created invoice {:number}.', [
+				'scope' => 'billing_estimate',
+				'number' => $invoice->number
+			]), [
+				'level' => 'success'
+			]);
+		} else {
+			Estimates::pdo()->rollback();
+			FlashMessage::write($t('Failed to convert to invoice.', ['scope' => 'billing_estimate']), [
+				'level' => 'error'
+			]);
+		}
+		return $this->redirect(['action' => 'index']);
+	}
+
 	protected function _selects($item = null) {
 		$statuses = Estimates::enum('status');
 		$currencies = Currencies::find('list');

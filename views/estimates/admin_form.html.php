@@ -322,7 +322,7 @@ $this->set([
 			<div class="bottom-actions__right">
 				<?php if ($item->exists()): ?>
 					<?= $this->html->link($t('duplicate'), [
-						'controller' => 'Invoices',
+						'controller' => 'Estimates',
 						'id' => $item->id, 'action' => 'duplicate',
 					], ['class' => 'button large']) ?>
 

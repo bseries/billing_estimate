@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: billing_estimate 1.0\n"
 "Report-Msgid-Bugs-To: info@atelierdisko.de\n"
-"POT-Creation-Date: 2016-01-19 12:25+0100\n"
+"POT-Creation-Date: 2016-07-28 13:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,16 +17,36 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: config/panes.php:26 config/widgets.php:40
+#: config/panes.php:26 config/widgets.php:68
 msgid "Estimates"
 msgstr ""
 
-#: config/widgets.php:42
+#: config/widgets.php:70
+msgid "successfully estimated"
+msgstr ""
+
+#: config/widgets.php:71
 msgid "pending"
 msgstr ""
 
-#: config/widgets.php:43
-msgid "accepted"
+#: config/widgets.php:72
+msgid "accept rate"
+msgstr ""
+
+#: controllers/EstimatesController.php:67
+msgid "Successfully duplicated."
+msgstr ""
+
+#: controllers/EstimatesController.php:72
+msgid "Failed to duplicate."
+msgstr ""
+
+#: controllers/EstimatesController.php:91
+msgid "Created invoice {:number}."
+msgstr ""
+
+#: controllers/EstimatesController.php:99
+msgid "Failed to convert to invoice."
 msgstr ""
 
 #: documents/Estimate.php:53
@@ -57,12 +77,12 @@ msgstr ""
 msgid "Dear {:name},"
 msgstr ""
 
-#: documents/Estimate.php:198 views/estimates/admin_form.html.php:118
-#: views/estimates/admin_form.html.php:180
+#: documents/Estimate.php:198 views/estimates/admin_form.html.php:171
+#: views/estimates/admin_form.html.php:233
 msgid "Description"
 msgstr ""
 
-#: documents/Estimate.php:205 views/estimates/admin_form.html.php:95
+#: documents/Estimate.php:205 views/estimates/admin_form.html.php:148
 msgid "Quantity"
 msgstr ""
 
@@ -74,8 +94,8 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
-#: documents/Estimate.php:282 views/estimates/admin_form.html.php:100
-#: views/estimates/admin_form.html.php:241
+#: documents/Estimate.php:282 views/estimates/admin_form.html.php:153
+#: views/estimates/admin_form.html.php:295
 #: views/estimates/admin_index.html.php:40
 msgid "Total (net)"
 msgstr ""
@@ -94,11 +114,11 @@ msgid ""
 "signature."
 msgstr ""
 
-#: models/Estimates.php:205
+#: models/Estimates.php:213
 msgid "Estimate"
 msgstr ""
 
-#: models/Estimates.php:212
+#: models/Estimates.php:220
 msgid "Estimate #{:number}"
 msgstr ""
 
@@ -117,6 +137,7 @@ msgid "Owner"
 msgstr ""
 
 #: views/estimates/admin_form.html.php:47
+#: views/estimates/admin_form.html.php:89
 #: views/estimates/admin_index.html.php:37
 msgid "Number"
 msgstr ""
@@ -125,136 +146,141 @@ msgstr ""
 msgid "Leave empty to autogenerate number."
 msgstr ""
 
-#: views/estimates/admin_form.html.php:55
+#: views/estimates/admin_form.html.php:56
 #: views/estimates/admin_index.html.php:38
 msgid "Status"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:60
+#: views/estimates/admin_form.html.php:61
 #: views/estimates/admin_index.html.php:36
 msgid "Date"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:66
+#: views/estimates/admin_form.html.php:68
 #: views/estimates/admin_index.html.php:39
 msgid "Recipient"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:71
-msgid "Address"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:74
-msgid "Automatically uses address assigned to user."
-msgstr ""
-
-#: views/estimates/admin_form.html.php:80
+#: views/estimates/admin_form.html.php:68
+#: views/estimates/admin_form.html.php:82
 msgid "User"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:88
-msgid "Positions"
+#: views/estimates/admin_form.html.php:72
+msgid "Receiving Address"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:75
+msgid "Automatically uses address assigned to user."
 msgstr ""
 
 #: views/estimates/admin_form.html.php:94
-msgid "Optional?"
+msgid "Name"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:96
-msgid "Currency"
+#: views/estimates/admin_form.html.php:100
+msgid "open user"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:97
-msgid "Type"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:98
-msgid "Unit price"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:99
-msgid "Tax rate (%)"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:124
-#: views/estimates/admin_form.html.php:185
-msgid "Tags"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:153
-#: views/estimates/admin_form.html.php:214
-msgid "gross"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:153
-#: views/estimates/admin_form.html.php:214
-msgid "net"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:173
-#: views/estimates/admin_form.html.php:232
-#: views/estimates/admin_form.html.php:315
-msgid "delete"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:237
-msgid "add position"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:246
-msgid "Tax ({:rate}%)"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:251
-msgid "Total (gross)"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:256
-msgid "excl. optional"
-msgstr ""
-
-#: views/estimates/admin_form.html.php:267
+#: views/estimates/admin_form.html.php:114
 msgid "Letter"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:269
+#: views/estimates/admin_form.html.php:116
 msgid "Leave empty to use default letter."
 msgstr ""
 
-#: views/estimates/admin_form.html.php:279
+#: views/estimates/admin_form.html.php:126
 msgid "Terms"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:280
+#: views/estimates/admin_form.html.php:127
 msgid "Leave empty to use default terms."
 msgstr ""
 
-#: views/estimates/admin_form.html.php:287
+#: views/estimates/admin_form.html.php:134
 msgid "Note"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:289
+#: views/estimates/admin_form.html.php:136
 msgid "Visible to recipient."
 msgstr ""
 
-#: views/estimates/admin_form.html.php:294
-msgid "Tax"
+#: views/estimates/admin_form.html.php:141
+msgid "Positions"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:304
-msgid "Tax note"
+#: views/estimates/admin_form.html.php:147
+msgid "Optional?"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:307
-msgid "Automatically detected."
+#: views/estimates/admin_form.html.php:149
+msgid "Currency"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:322
+#: views/estimates/admin_form.html.php:150
+msgid "Type"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:151
+msgid "Unit price"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:152
+msgid "Tax rate (%)"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:177
+#: views/estimates/admin_form.html.php:238
+msgid "Tags"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:206
+#: views/estimates/admin_form.html.php:267
+msgid "gross"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:206
+#: views/estimates/admin_form.html.php:267
+msgid "net"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:226
+#: views/estimates/admin_form.html.php:285
+#: views/estimates/admin_form.html.php:321
+msgid "delete"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:290
+msgid "add position"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:300
+msgid "Tax ({:rate}%)"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:305
+msgid "Total (gross)"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:310
+msgid "excl. optional"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:328
+msgid "convert to invoice"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:333
+msgid "duplicate"
+msgstr ""
+
+#: views/estimates/admin_form.html.php:338
 #: views/estimates/admin_index.html.php:75
 msgid "PDF"
 msgstr ""
 
-#: views/estimates/admin_form.html.php:328
+#: views/estimates/admin_form.html.php:343
 msgid "save"
 msgstr ""
 

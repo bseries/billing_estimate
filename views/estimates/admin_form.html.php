@@ -173,7 +173,8 @@ $this->set([
 									'type' => 'textarea',
 									'label' => false,
 									'value' => $child->description,
-									'placeholder' => $t('Description')
+									'placeholder' => $t('Description'),
+									'maxlength' => 250
 								]) ?>
 								<?= $this->form->field("positions.{$key}.tags", [
 									'type' => 'text',
@@ -235,7 +236,8 @@ $this->set([
 							<?= $this->form->field('positions.new.description', [
 								'type' => 'textarea',
 								'label' => false,
-								'placeholder' => $t('Description')
+								'placeholder' => $t('Description'),
+								'maxlength' => 250
 							]) ?>
 							<?= $this->form->field("positions.new.tags", [
 								'type' => 'text',

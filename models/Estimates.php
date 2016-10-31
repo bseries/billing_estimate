@@ -216,14 +216,18 @@ class Estimates extends \base_core\models\Base {
 			]))
 			->entity($entity)
 			->recipient($user)
-			->sender($sender)
-			->subject($t('Estimate #{:number}', [
+			->sender($sender);
+
+		$document->compile();
+
+		$document
+			->author($sender->name)
+			->title($t('Estimate #{:number}', [
 				'number' => $entity->number,
 				'locale' => $user->locale,
 				'scope' => 'billing_estimate'
 			]));
 
-		$document->compile();
 		$document->render($stream);
 
 		rewind($stream);

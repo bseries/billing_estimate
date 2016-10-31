@@ -209,11 +209,18 @@ class Estimates extends \base_core\models\Base {
 		$document = Libraries::locate('document', 'Estimate');
 		$document = new $document();
 
+		$titleAndSubject = $t('Estimate #{:number}', [
+			'number' => $entity->number,
+			'locale' => $user->locale,
+			'scope' => 'billing_estimate'
+		]);
+
 		$document
 			->type($t('Estimate', [
 				'scope' => 'billing_estimate',
 				'locale' => $user->locale
 			]))
+			->subject($titleAndSubject)
 			->entity($entity)
 			->recipient($user)
 			->sender($sender);
@@ -221,12 +228,8 @@ class Estimates extends \base_core\models\Base {
 		$document->compile();
 
 		$document
-			->author($sender->name)
-			->title($t('Estimate #{:number}', [
-				'number' => $entity->number,
-				'locale' => $user->locale,
-				'scope' => 'billing_estimate'
-			]));
+			->metaAuthor($sender->name)
+			->metaTitle($titleAndSubject);
 
 		$document->render($stream);
 

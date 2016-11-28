@@ -62,7 +62,13 @@ Widgets::register('estimates', function() use ($t) {
 			'status'  => 'accepted'
 		]
 	]);
-	$rate = round(($accepted * 100) / ($accepted + $rejected), 0);
+
+	// sum of both may be zero, and we cannot divide by 0.
+	if ($accepted + $rejected > 0) {
+		$rate = round(($accepted * 100) / ($accepted + $rejected), 0);
+	} else {
+		$rate = 100;
+	}
 
 	return [
 		'title' => $t('Estimates', ['scope' => 'billing_estimate']),

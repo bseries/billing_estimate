@@ -305,7 +305,7 @@ msgstr "öffnen"
 
 #: views/estimates/admin_index.html.php:81
 msgid "No items available, yet."
-msgstr "Es sind noch keine Elemente verfügbar."
+msgstr "Es sind noch keine Einträge verfügbar."
 
 #~ msgid "Address"
 #~ msgstr "Adressse"

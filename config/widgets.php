@@ -75,7 +75,7 @@ Widgets::register('estimates', function() use ($t) {
 		'data' => [
 			$t('successfully estimated', ['scope' => 'billing_estimate']) => $formatter->format($estimated),
 			$t('pending', ['scope' => 'billing_estimate']) => $pending,
-			$t('accept rate', ['scope' => 'billing_estimate']) =>  $rate . '%',
+			$t('accepted', ['scope' => 'billing_estimate']) =>  $rate . '%',
 		],
 		'url' => [
 			'library' => 'billing_estimate',

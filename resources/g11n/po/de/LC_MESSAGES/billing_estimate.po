@@ -137,7 +137,7 @@ msgstr "Zugriff"
 #: views/estimates/admin_form.html.php:36
 #: views/estimates/admin_index.html.php:43
 msgid "Owner"
-msgstr "Besitzer"
+msgstr "Eigentümer"
 
 #: views/estimates/admin_form.html.php:47
 #: views/estimates/admin_form.html.php:89

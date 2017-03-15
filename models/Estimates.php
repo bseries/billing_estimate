@@ -178,19 +178,6 @@ class Estimates extends \base_core\models\Base {
 		return $results;
 	}
 
-	// May return positive or negative values.
-	public function balance($entity, $includeOptionalPositions = false) {
-		$result = new Monies();
-
-		foreach ($entity->positions() as $position) {
-			if (!$includeOptionalPositions && $position->is_optional) {
-				continue;
-			}
-			$result = $result->subtract($position->total()->getGross());
-		}
-		return $result;
-	}
-
 	public function address($entity) {
 		return Addresses::createFromPrefixed('address_', $entity->data());
 	}

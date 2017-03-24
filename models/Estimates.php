@@ -66,6 +66,10 @@ class Estimates extends \base_core\models\Base {
 		'User' => [
 			'to' => 'base_core\models\Users',
 			'key' => 'user_id'
+		],
+		'Owner' => [
+			'to' => 'base_core\models\Users',
+			'key' => 'owner_id'
 		]
 	];
 

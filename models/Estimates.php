@@ -33,6 +33,7 @@ use billing_estimate\models\EstimatePositions;
 use billing_invoice\models\InvoicePositions;
 use billing_invoice\models\Invoices;
 use li3_mailer\action\Mailer;
+use lithium\aop\Filters;
 use lithium\core\Libraries;
 use lithium\g11n\Message;
 
@@ -313,7 +314,7 @@ class Estimates extends \base_core\models\Base {
 	}
 }
 
-Estimates::applyFilter('save', function($self, $params, $chain) {
+Filters::apply(Estimates::class, 'save', function($params, $next) {
 	$entity = $params['entity'];
 	$data =& $params['data'];
 
@@ -345,7 +346,7 @@ Estimates::applyFilter('save', function($self, $params, $chain) {
 		$user = $entity->user();
 	}
 
-	if (!$result = $chain->next($self, $params, $chain)) {
+	if (!$result = $next($params)) {
 		return false;
 	}
 
@@ -380,9 +381,10 @@ Estimates::applyFilter('save', function($self, $params, $chain) {
 
 	return true;
 });
-Estimates::applyFilter('delete', function($self, $params, $chain) {
+
+Filters::apply(Estimates::class, 'delete', function($params, $next) {
 	$entity = $params['entity'];
-	$result = $chain->next($self, $params, $chain);
+	$result = $next($params);
 
 	if ($result) {
 		$positions = EstimatePositions::find('all', [

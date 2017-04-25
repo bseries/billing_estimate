@@ -141,7 +141,7 @@ class Estimates extends \base_core\models\Base {
 	}
 
 	public function title($entity) {
-		return '#' . $entity->number;
+		return $entity->number;
 	}
 
 	public function date($entity) {
@@ -210,7 +210,7 @@ class Estimates extends \base_core\models\Base {
 		$document = Libraries::locate('document', 'Estimate');
 		$document = new $document();
 
-		$titleAndSubject = $t('Estimate #{:number}', [
+		$titleAndSubject = $t('Estimate {:number}', [
 			'number' => $entity->number,
 			'locale' => $user->locale,
 			'scope' => 'billing_estimate'

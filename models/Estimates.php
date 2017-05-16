@@ -50,12 +50,15 @@ class Estimates extends \base_core\models\Base {
 		'base_core\extensions\data\behavior\ReferenceNumber',
 		'base_core\extensions\data\behavior\Searchable' => [
 			'fields' => [
+				'User.name',
+				'User.number',
+				'Owner.name',
+				'Owner.number',
 				'number',
 				'status',
 				'date',
 				'address_recipient',
-				'address_organization',
-				'User.number'
+				'address_organization'
 			]
 		]
 	];
@@ -64,6 +67,10 @@ class Estimates extends \base_core\models\Base {
 		'User' => [
 			'to' => 'base_core\models\Users',
 			'key' => 'user_id'
+		],
+		'Owner' => [
+			'to' => 'base_core\models\Users',
+			'key' => 'owner_id'
 		]
 	];
 
@@ -174,19 +181,6 @@ class Estimates extends \base_core\models\Base {
 			}
 		}
 		return $results;
-	}
-
-	// May return positive or negative values.
-	public function balance($entity, $includeOptionalPositions = false) {
-		$result = new Monies();
-
-		foreach ($entity->positions() as $position) {
-			if (!$includeOptionalPositions && $position->is_optional) {
-				continue;
-			}
-			$result = $result->subtract($position->total()->getGross());
-		}
-		return $result;
 	}
 
 	public function address($entity) {

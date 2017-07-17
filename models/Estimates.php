@@ -325,7 +325,7 @@ Filters::apply(Estimates::class, 'save', function($params, $next) {
 		$terms = Settings::read('estimate.terms');
 		$letter = Settings::read('estimate.letter');
 
-		$data = array_filter($data) + [
+		$data = array_filter((array) $data) + [
 			'user_id' => $user->id,
 			'user_vat_reg_no' => $user->vat_reg_no,
 			'tax_type' => $group->taxType()->name(),

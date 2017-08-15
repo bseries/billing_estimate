@@ -17,33 +17,46 @@
 
 namespace billing_estimate\config;
 
+use AD\Finance\Money\Monies;
+use AD\Finance\Money\MoniesIntlFormatter as MoniesFormatter;
+use AD\Finance\Price;
 use base_core\extensions\cms\Widgets;
 use billing_estimate\models\Estimates;
 use lithium\core\Environment;
 use lithium\g11n\Message;
-use AD\Finance\Money\Monies;
-use AD\Finance\Money\MoniesIntlFormatter as MoniesFormatter;
 
 extract(Message::aliases());
 
 Widgets::register('estimates', function() use ($t) {
 	$formatter = new MoniesFormatter(Environment::get('locale'));
 
-	$estimated = new Monies();
-	$estimates = Estimates::find('all', [
+	$positions = EstimatePositions::find('all', [
 		'conditions' => [
-			'status' => 'accepted'
+			'Estimate.status' => 'accepted'
 		],
 		'fields' => [
-			'id'
-		]
+			'amount_currency',
+			'amount_type',
+			'amount_rate',
+			'ROUND(SUM(InvoicePositions.amount * InvoicePositions.quantity)) AS total'
+		],
+		'group' => [
+			'amount_currency',
+			'amount_type',
+			'amount_rate'
+		],
+		'with' => ['Estimate']
 	]);
-	foreach ($estimates as $estimate) {
-		foreach ($estimate->totals()->sum() as $rate => $currencies) {
-			foreach ($currencies as $currency => $price) {
-				$estimated = $estimated->add($price->getNet());
-			}
-		}
+
+	$estimated = new Monies();
+	foreach ($positions as $position) {
+		$price = new Price(
+			(integer) $position->total,
+			$position->amount_currency,
+			$position->amount_type,
+			(integer) $position->amount_rate
+		);
+		$estimated = $estimated->add($price->getNet());
 	}
 
 	$pending = Estimates::find('count', [

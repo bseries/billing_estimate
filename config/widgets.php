@@ -17,12 +17,11 @@
 
 namespace billing_estimate\config;
 
-use AD\Finance\Money\Monies;
 use AD\Finance\Money\MoniesIntlFormatter as MoniesFormatter;
-use AD\Finance\Price;
+use AD\Finance\Price\Prices;
 use base_core\extensions\cms\Widgets;
-use billing_estimate\models\Estimates;
 use billing_estimate\models\EstimatePositions;
+use billing_estimate\models\Estimates;
 use lithium\core\Environment;
 use lithium\g11n\Message;
 
@@ -40,7 +39,7 @@ Widgets::register('estimates', function() use ($t) {
 			'amount_currency',
 			'amount_type',
 			'amount_rate',
-			'ROUND(SUM(EstimatePositions.amount * EstimatePositions.quantity)) AS total'
+			'ROUND(SUM(EstimatePositions.amount * EstimatePositions.quantity)) AS amount'
 		],
 		'group' => [
 			'amount_currency',
@@ -50,15 +49,9 @@ Widgets::register('estimates', function() use ($t) {
 		'with' => ['Estimate']
 	]);
 
-	$estimated = new Monies();
+	$estimated = new Prices();
 	foreach ($positions as $position) {
-		$price = new Price(
-			(integer) $position->total,
-			$position->amount_currency,
-			$position->amount_type,
-			(integer) $position->amount_rate
-		);
-		$estimated = $estimated->add($price->getNet());
+		$estimated = $estimated->add($position->amount());
 	}
 
 	$pending = Estimates::find('count', [
@@ -88,7 +81,7 @@ Widgets::register('estimates', function() use ($t) {
 	return [
 		'title' => $t('Estimates', ['scope' => 'billing_estimate']),
 		'data' => [
-			$t('successfully estimated', ['scope' => 'billing_estimate']) => $formatter->format($estimated),
+			$t('successfully estimated', ['scope' => 'billing_estimate']) => $formatter->format($estimated->getNet()),
 			$t('pending', ['scope' => 'billing_estimate']) => $pending,
 			$t('accepted', ['scope' => 'billing_estimate']) =>  $rate . '%',
 		],

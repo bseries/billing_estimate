@@ -22,6 +22,7 @@ use AD\Finance\Money\MoniesIntlFormatter as MoniesFormatter;
 use AD\Finance\Price;
 use base_core\extensions\cms\Widgets;
 use billing_estimate\models\Estimates;
+use billing_estimate\models\EstimatePositions;
 use lithium\core\Environment;
 use lithium\g11n\Message;
 
@@ -32,13 +33,14 @@ Widgets::register('estimates', function() use ($t) {
 
 	$positions = EstimatePositions::find('all', [
 		'conditions' => [
-			'Estimate.status' => 'accepted'
+			'Estimate.status' => 'accepted',
+			'EstimatePositions.is_optional' => false
 		],
 		'fields' => [
 			'amount_currency',
 			'amount_type',
 			'amount_rate',
-			'ROUND(SUM(InvoicePositions.amount * InvoicePositions.quantity)) AS total'
+			'ROUND(SUM(EstimatePositions.amount * EstimatePositions.quantity)) AS total'
 		],
 		'group' => [
 			'amount_currency',

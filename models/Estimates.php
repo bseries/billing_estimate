@@ -97,11 +97,28 @@ class Estimates extends \base_core\models\Base {
 	];
 
 	public static function init() {
+		extract(Message::aliases());
 		$model = static::_object();
 
 		static::behavior('base_core\extensions\data\behavior\ReferenceNumber')->config(
 			Settings::read('estimate.number')
 		);
+
+		if (!static::behavior('ReferenceNumber')->config('generate')) {
+			$model->validates['number'] = [
+				'notEmpty' => [
+					'notEmpty',
+					'on' => ['create', 'update'],
+					'last' => true,
+					'message' => $t('This field cannot be empty.', ['scope' => 'billing_estimate'])
+				],
+				'isUnique' => [
+					'isUniqueReferenceNumber',
+					'on' => ['create', 'update'],
+					'message' => $t('This number is already in use.', ['scope' => 'billing_estimate'])
+				]
+			];
+		}
 	}
 
 	public function positionsGroupedByTags($entity, array $customTagsOrder = []) {

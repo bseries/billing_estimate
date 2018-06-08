@@ -30,60 +30,13 @@ extract(Message::aliases());
 Widgets::register('estimates', function() use ($t) {
 	$formatter = new MoniesFormatter(Environment::get('locale'));
 
-	$positions = EstimatePositions::find('all', [
-		'conditions' => [
-			'Estimate.status' => 'accepted',
-			'EstimatePositions.is_optional' => false
-		],
-		'fields' => [
-			'amount_currency',
-			'amount_type',
-			'amount_rate',
-			'ROUND(SUM(EstimatePositions.amount * EstimatePositions.quantity)) AS amount'
-		],
-		'group' => [
-			'amount_currency',
-			'amount_type',
-			'amount_rate'
-		],
-		'with' => ['Estimate']
-	]);
-
-	$estimated = new Prices();
-	foreach ($positions as $position) {
-		$estimated = $estimated->add($position->amount());
-	}
-
-	$pending = Estimates::find('count', [
-		'conditions' => [
-			'status'  => 'sent'
-		]
-	]);
-
-	$rejected = Estimates::find('count', [
-		'conditions' => [
-			'status'  => ['rejected', 'no-response']
-		]
-	]);
-	$accepted = Estimates::find('count', [
-		'conditions' => [
-			'status'  => 'accepted'
-		]
-	]);
-
-	// sum of both may be zero, and we cannot divide by 0.
-	if ($accepted + $rejected > 0) {
-		$rate = round(($accepted * 100) / ($accepted + $rejected), 0);
-	} else {
-		$rate = 100;
-	}
-
 	return [
 		'title' => $t('Estimates', ['scope' => 'billing_estimate']),
 		'data' => [
-			$t('successfully estimated', ['scope' => 'billing_estimate']) => $formatter->format($estimated->getNet()),
-			$t('pending', ['scope' => 'billing_estimate']) => $pending,
-			$t('accepted', ['scope' => 'billing_estimate']) =>  $rate . '%',
+			$t('total (this year, ongoing)', ['scope' => 'billing_estimate']) => $formatter->format(Estimates::totalEstimated(date('Y'))->getNet()),
+			$t('total (previous year)', ['scope' => 'billing_estimate']) => $formatter->format(Estimates::totalEstimated(date('Y') - 1)->getNet()),
+			$t('pending', ['scope' => 'billing_estimate']) => Estimates::countPending(),
+			$t('accepted', ['scope' => 'billing_estimate']) => round(Estimates::successRate(), 0) . '%',
 		],
 		'url' => [
 			'library' => 'billing_estimate',

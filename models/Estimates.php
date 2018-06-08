@@ -323,6 +323,64 @@ class Estimates extends \base_core\models\Base {
 			return $item->conditions($user);
 		});
 	}
+
+	/* Statistics */
+
+	public static function totalEstimated($year) {
+		$estimated = new Prices();
+
+		$positions = EstimatePositions::find('all', [
+			'conditions' => [
+				'Estimate.status' => 'accepted',
+				'EstimatePositions.is_optional' => false,
+				'YEAR(Estimate.date)' => $year
+			],
+			'fields' => [
+				'amount_currency',
+				'amount_type',
+				'amount_rate',
+				'ROUND(SUM(EstimatePositions.amount * EstimatePositions.quantity)) AS amount'
+			],
+			'group' => [
+				'amount_currency',
+				'amount_type',
+				'amount_rate'
+			],
+			'with' => ['Estimate']
+		]);
+
+		foreach ($positions as $position) {
+			$estimated = $estimated->add($position->amount());
+		}
+		return $estimated;
+	}
+
+	public static function countPending() {
+		return static::find('count', [
+			'conditions' => [
+				'status'  => 'sent'
+			]
+		]);
+	}
+
+	public static function successRate() {
+		$rejected = static::find('count', [
+			'conditions' => [
+				'status'  => ['rejected', 'no-response']
+			]
+		]);
+		$accepted = static::find('count', [
+			'conditions' => [
+				'status'  => 'accepted'
+			]
+		]);
+
+		// Sum of both may be zero, and we cannot divide by 0.
+		if ($accepted + $rejected > 0) {
+			return ($accepted * 100) / ($accepted + $rejected);
+		}
+		return 100;
+	}
 }
 
 Filters::apply(Estimates::class, 'save', function($params, $next) {

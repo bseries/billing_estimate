@@ -15,7 +15,7 @@ CREATE TABLE `billing_estimate_positions` (
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `billing_invoice_id` (`billing_estimate_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB;
 
 -- Create syntax for TABLE 'billing_estimates'
 CREATE TABLE `billing_estimates` (
@@ -47,4 +47,4 @@ CREATE TABLE `billing_estimates` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `number` (`number`),
   KEY `user` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB;

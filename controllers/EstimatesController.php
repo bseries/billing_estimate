@@ -40,15 +40,10 @@ class EstimatesController extends \base_core\controllers\BaseController {
 				'id' => $this->request->id
 			]
 		]);
-		$stream = $item->exportAsPdf();
 
 		$this->_renderDownload(
-			$this->_downloadBasename(
-				null,
-				'estimate',
-				$item->number . '.pdf'
-			),
-			$stream
+			$stream = $item->exportAsPdf(),
+			'application/pdf'
 		);
 		fclose($stream);
 	}

@@ -304,17 +304,17 @@ $this->set([
 							<tr class="totals">
 								<td colspan="7">
 									<?= $t('Total (net)') ?>
-								<td colspan="2"><?= $this->money->format($item->totals()->getNet()) ?>
+								<td colspan="1"><?= $this->money->format($item->totals()->getNet()) ?>
 
 							<?php foreach ($item->taxes() as $rate => $tax): ?>
 								<tr class="totals">
 									<td colspan="7"><?= $t('Tax ({:rate}%)', ['rate' => $rate]) ?>
-									<td colspan="2"><?= $this->money->format($tax) ?>
+									<td colspan="1"><?= $this->money->format($tax) ?>
 							<?php endforeach ?>
 
 							<tr class="totals">
 								<td colspan="7"><?= $t('Total (gross)') ?>
-								<td colspan="2"><?= $this->money->format($item->totals()->getGross()) ?>
+								<td colspan="1"><?= $this->money->format($item->totals()->getGross()) ?>
 							<?php if ($item->hasOptionalPositions()): ?>
 							<tr class="totals">
 								<td colspan="10">

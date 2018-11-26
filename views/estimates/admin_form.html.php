@@ -15,7 +15,8 @@ $this->set([
 		'object' => $t('estimate')
 	],
 	'meta' => [
-		'status' => $statuses[$item->status]
+		'status' => $statuses[$item->status],
+		'overdue' => $item->isOverdue() ? $t('overdue') : null
 	]
 ]);
 

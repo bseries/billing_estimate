@@ -172,6 +172,18 @@ class Estimates extends \base_core\models\Base {
 		return DateTime::createFromFormat('Y-m-d', $entity->date);
 	}
 
+	public function isOverdue($entity) {
+		if (!$overdue = Settings::read('estimate.overdueAfter')) {
+			return false;
+		}
+		if ($entity->status !== 'sent') {
+			return false;
+		}
+		$date = DateTime::createFromFormat('Y-m-d', $entity->date);
+
+		return time() > strtotime($overdue, $date->getTimestamp());
+	}
+
 	// Returns Prices. Excluding optional costs.
 	public function totals($entity, $includeOptionalPositions = false) {
 		$result = new Prices();
@@ -407,7 +419,7 @@ Filters::apply(Estimates::class, 'save', function($params, $next) {
 			'tax_note' => $group->taxType()->note(),
 			'date' => date('Y-m-d'),
 			'status' => 'created',
-			'letter' => !is_bool($letter) ? (is_callable($letter) ? $letter($user) : $letter) : null,
+			'letter' => !is_bool($letter) ? (is_callable($letter) ? $letter('entity', $user, $entity) : $letter) : null,
 			'terms' => !is_bool($terms) ? (is_callable($terms) ? $terms($user) : $terms) : null
 		];
 		$data = $user->address('billing')->copy($data, 'address_');
